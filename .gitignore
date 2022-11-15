@@ -1,6 +1,5 @@
 node_modules
 client/build
 .idea
-bin
 .env
 *.log

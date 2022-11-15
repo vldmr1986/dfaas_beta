@@ -32,6 +32,6 @@ cd client && npm run build
 ```
 5. Run server (from the root project folder)
 ```
-cd client && npm start 
+cd backend && npm start 
 ```
 6. Open port 8080
