@@ -1,0 +1,48 @@
+---
+
+# (C) Copyright 2022 Hewlett Packard Enterprise Development LP
+
+#-----------------------------------------------------------------#
+#  Setup env variables, required for the operations               #
+#   1) space_name                                                 #
+#   2) parent_space_id                                            #
+#   3) issuer (API client).                                       #
+#   4) api_client_id                                              #
+#   5) api_client_secret                                          #
+#   6) user_name (user email-id)                                  #
+#   7) country_code                                               #
+#   8) last_name                                                  #
+#   9) first_name                                                 #
+#-----------------------------------------------------------------#
+
+#environment var : Choose between prod or intg
+env_var: intg
+
+iam_endpoint_intg: iam.intg.hpedevops.net
+iam_endpoint_prod: iam.us1.greenlake-hpe.com
+
+#space creation
+space1_name: "{{ lookup('env', 'space_name') }}"
+parent_space_data: "{{ lookup('env', 'parent_space_id') }}" 
+
+#access_token
+issuer: "{{ lookup('env', 'issuer') }}"
+api_client_id: "{{ lookup('env', 'api_client_id') }}" 
+api_client_secret: "{{ lookup('env', 'api_client_secret') }}" 
+
+#user_creation
+user_email_Id: "{{ lookup('env', 'user_email_Id') }}"
+country_code: "{{ lookup('env', 'country_code') }}"
+last_name: "{{ lookup('env', 'last_name') }}"
+first_name: "{{ lookup('env', 'first_name') }}"
+
+#role_creation
+role_id_HPE_operator_intg: 5118d52e-c5d2-4309-8cf2-4cdb8935c0a9
+role_id_DF_cluster_admin_intg: e98e10ad-56fc-4b10-92ed-79085b8d4cfd
+role_id_HPE_operator_prod: 777860ea-9b81-43c7-ad76-e86d6a1fbdb1
+role_id_DF_cluster_admin_prod: cb51a6fc-8152-454f-8aa7-eb982cb9b4ef
+
+
+glc_rest_api_default_retry_status_codes: [429, 500]
+glc_rest_api_max_retry_count: 6
+glc_rest_api_max_retry_delay: 10
