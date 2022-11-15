@@ -17,7 +17,7 @@
 
 #environment var : Choose between prod or intg
 env_var: intg
-
+ansible_python_interpreter: /usr/bin/python3
 iam_endpoint_intg: iam.intg.hpedevops.net
 iam_endpoint_prod: iam.us1.greenlake-hpe.com
 
