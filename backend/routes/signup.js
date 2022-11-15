@@ -42,7 +42,6 @@ router.post('/', async(req, res) => {
         }
     } catch (err){
         console.error(err);
-        if (err.stdout)
         res.send({
             status: "ERROR",
             // parse error
