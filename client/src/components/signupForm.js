@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {
     Anchor,
-    Box, Button, Form, FormField, Heading, Select, Spinner, Text, TextInput
+    Box, Form, FormField, Heading, Select, Spinner, Text, TextInput
 } from "grommet";
 import {fetchAvailableSpaces, fetchCountries, fetchSignUp} from "../actions";
 import Modal from "./modals/modal";
-import {Link} from "grommet-icons";
 import licenseContent from "../euula.pdf";
 
 const DEFAULT_COUNTRIES = [{label: "Select Country", value: ""}];
@@ -14,7 +13,7 @@ const LABEL_WIDTH = "100px";
 function SignUp() {
     const [isLoading, setIsLoading] = useState(true);
     const [showAgreement, setShowAgreement] = useState(false);
-    const [acceptedAgreement, setAcceptedAgreement] = useState(false);
+    // const [acceptedAgreement, setAcceptedAgreement] = useState(false);
     const [countries, setCountries]  = useState(DEFAULT_COUNTRIES);
     const [spaces, setSpaces]  = useState(null);
     const [signupStatus, setSignupStatus] = useState({
@@ -30,7 +29,7 @@ function SignUp() {
         surname: "",
         country: "",
     });
-    const onClose=()=>setShowAgreement(null)
+
     const onSubmit = ()=>{
         setSignupStatus({
             error: null,
@@ -88,12 +87,7 @@ function SignUp() {
             <Box align={"center"} justify={"center"}>
                 <Heading  level={4}> Registration is complete.</Heading>
             </Box>
-            Please check your email and activate your HPE consumer account with the link provided in the email. After activation of the account you can access the Ezmeral DFaaS by clicking "EzDFaaS"
-            <Box align={"center"} justify={"center"}>
-                <Button primary>
-                    <Anchor href="https://client.greenlake.hpe.com" label="EzDFaaS" />
-                </Button>
-            </Box>
+            Please check your email and activate your HPE consumer account with the link provided in the email. After activation of the account you can access the Ezmeral DFaaS by clicking  <Anchor margin={{left: "xsmall"}} href="https://client.greenlake.hpe-gl-intg.com" label="EzDFaaS" />
         </Box>
     }
 
@@ -109,9 +103,7 @@ function SignUp() {
             <Spinner size={"medium"} />
         </Box>
     }
-    console.log(
-    signupStatus.isFetchingSignup , isLoading , !acceptedAgreement , !formData.name , !formData.email , !formData.country , !formData.surname
-)
+
     return (
             <Form
                 value={formData}
@@ -198,7 +190,7 @@ function SignUp() {
                     {/*<Button label={"Read and accept"} onClick={()=>setShowAgreement(true)} secondary={true}/>*/}
                 </Box>
                 {signupStatus.error
-                    ? <Box><Text weight={"bold"} color={"red"} size={"medium"}>{signupStatus.error}</Text></Box>
+                    ? <Box><Text weight={"bold"} color={"red"} size={"medium"}>Error: {signupStatus.error}</Text></Box>
                     : null
                 }
                 <Text>

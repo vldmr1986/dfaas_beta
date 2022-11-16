@@ -1,6 +1,8 @@
 # SYSTEM REQUIREMENTS:
 - NODE JS: v. 16+
 - MARIADB:  10.8.3
+- Ansible
+- python3
 
 1. Install backend packages
 ```
@@ -13,13 +15,12 @@ DB_USERNAME=sd
 DB_PASSWORD=password
 DB_HOST=localhost
 DB_PORT=3306
-DB_NAME=dfaas
+DB_NAME=db
 ```
 If need to create a new database with the tables (values provided for example)
 ```
-NEW_DB_NAME=dfaas
-NEW_DB_AUTH_TABLE_NAME=auth
-NEW_DB_CLUSTERS_TABLE_NAME=clusters
+DB_NAME=db
+DB_TABLE_NAME=auth
 ```
 
 3. Create DB [OPTIONAL]

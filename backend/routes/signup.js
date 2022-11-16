@@ -36,7 +36,8 @@ router.post('/', async(req, res) => {
             ansibleResult);
         if (typeof(ansibleResult) === "string" &&  ansibleResult.indexOf("fatal: [localhost]: FAILED!") !== -1) {
             res.send({
-                status: "ERROR"
+                status: "ERROR",
+                message: "This user is already invited for Data Fabric beta access."
             });
             return;
         }
@@ -46,7 +47,7 @@ router.post('/', async(req, res) => {
             status: "ERROR",
             // parse error
             // message: err?.stdout ?  err?.stdout : "Error"
-            message: "Error"
+            message: "This user is already invited for Data Fabric beta access."
         });
         return;
     }
