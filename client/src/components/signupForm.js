@@ -92,8 +92,8 @@ function SignUp() {
             <Box align={"center"} justify={"center"}>
                 <Heading level={4}>Registration is complete.</Heading>
             </Box>
-            <Text>
-                Please check your email and activate your HPE consumer account with the link provided in the email.
+            <Text size={"large"}>
+                Please check your email and activate your HPE consumer account with the link provided in the email.<br/>
                 After activation of the account you can access the Ezmeral DFaaS by clicking
                 <Anchor margin={{left: "xsmall"}} href="https://client.greenlake.hpe-gl-intg.com" label="EzDFaaS" />
             </Text>
