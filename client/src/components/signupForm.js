@@ -37,7 +37,12 @@ function SignUp() {
             isFetchingSignup: true,
             isSuccess: false
         })
-        const signupData = {...formData};
+        const signupData = {
+            email: formData.email.trim(),
+            name: formData.name.trim(),
+            surname: formData.surname.trim(),
+            country: formData.country.value,
+            };
         fetchSignUp(signupData)
             .then(resp=>{
                 if (resp?.status === "OK") {
@@ -85,9 +90,13 @@ function SignUp() {
     if (signupStatus.isSuccess ||  localStorage.getItem("isRegistered") === "1") {
         return <Box>
             <Box align={"center"} justify={"center"}>
-                <Heading  level={4}> Registration is complete.</Heading>
+                <Heading level={4}>Registration is complete.</Heading>
             </Box>
-            Please check your email and activate your HPE consumer account with the link provided in the email. After activation of the account you can access the Ezmeral DFaaS by clicking  <Anchor margin={{left: "xsmall"}} href="https://client.greenlake.hpe-gl-intg.com" label="EzDFaaS" />
+            <Text>
+                Please check your email and activate your HPE consumer account with the link provided in the email.
+                After activation of the account you can access the Ezmeral DFaaS by clicking
+                <Anchor margin={{left: "xsmall"}} href="https://client.greenlake.hpe-gl-intg.com" label="EzDFaaS" />
+            </Text>
         </Box>
     }
 
@@ -177,22 +186,23 @@ function SignUp() {
                                     valueKey={"value"}
                                     onChange={({ option }) => setFormData({
                                         ...formData,
-                                        country: option.value
+                                        country: option
                                     })}
+                                    value={formData.country}
                                 />
                             </FormField>
                         </Box>
                     </Box>
                 </Box>
+                {signupStatus.error
+                    ? <Box margin={{top: "small"}}><Text weight={"bold"} color={"red"} size={"medium"}>Error: {signupStatus.error}</Text></Box>
+                    : null
+                }
                 <Box margin={{vertical: "medium"}}  align={"center"} direction={"row"}>
                     <Anchor onClick={()=>setShowAgreement(true)} label={"Please click here to read the end user license agreement and register"}/>
                     {/*<Text size={"large"} margin={{right: "medium"}}>End User License Agreement*</Text>*/}
                     {/*<Button label={"Read and accept"} onClick={()=>setShowAgreement(true)} secondary={true}/>*/}
                 </Box>
-                {signupStatus.error
-                    ? <Box><Text weight={"bold"} color={"red"} size={"medium"}>Error: {signupStatus.error}</Text></Box>
-                    : null
-                }
                 <Text>
                     Once registration is complete you will receive an email with the link to activate your HPE consumer account. <br/>After activation of the account login at
 
@@ -214,7 +224,7 @@ function SignUp() {
                     isPrimaryBtnDisabled={signupStatus.isFetchingSignup || isLoading || !formData.name || !formData.email || !formData.country || !formData.surname}
                     onSecondaryClick={()=>setShowAgreement(false)}
                     onClose={()=>setShowAgreement(false)}
-                    secondaryLabel={"Reject and Exit"}
+                    secondaryLabel={"Exit"}
                     primaryLabel={"Accept and Register"}
                     onPrimaryClick={()=> {
                         onSubmit();
