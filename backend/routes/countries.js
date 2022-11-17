@@ -1,10 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const {COUNTRIES_LIST} = require("../db/countries_list");
 const {withStatusOk} = require("../utils/utils");
 
+const {getCountries} = require("../db/data");
+
 router.get('/', async (req, res) => {
-    res.send(withStatusOk(COUNTRIES_LIST));
+    const countries = await getCountries();
+    res.send(withStatusOk(countries));
 });
 
 module.exports = router;

@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db');
 
-const {SPACES_LIST} = require("../db/spaces_list");
 const {withStatusOk} = require("../utils/utils");
+const {getSpaceNames} = require("../db/data");
 
 router.get('/', async (req, res) => {
   try {
@@ -11,7 +11,10 @@ router.get('/', async (req, res) => {
 
     const handledResult = db_result.map(({space})=> space);
     const handledResultSet = new Set([...handledResult]);
-    const data = SPACES_LIST.filter(space=> !handledResultSet.has(space))
+
+    const spaceNames = await getSpaceNames();
+
+    const data = spaceNames.filter(space=> !handledResultSet.has(space))
     res.send(withStatusOk(data));
   } catch (e) {
   }

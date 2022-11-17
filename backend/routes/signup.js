@@ -1,19 +1,24 @@
 const express = require('express');
 const db = require("../db");
 const {ansibleExecute} = require("../deployments/run_ansible");
-const {SPACES_LIST} = require("../db/spaces_list");
+const {getSpaceNames} = require("../db/data");
+const {validateSignup} = require("../utils/validationUtils");
 const router = express.Router();
 
 router.post('/', async(req, res) => {
     const {name="", surname="", country = "", email=""} = req.body;
     const spacesAndEmailsInDB  =  await db.pool.query("SELECT space,email from deployments");
-    const isDataAlreadyInUse = spacesAndEmailsInDB.find(({ email: _email})=> _email === email);
+    const isEmailInUse = !!spacesAndEmailsInDB.find(({ email: _email})=> _email === email)?.email;
     const allSpacesInUseSet = new Set(spacesAndEmailsInDB.map(({space})=> space));
-    const space = SPACES_LIST.find(space => !allSpacesInUseSet.has(space));
+    const allSpaces = await getSpaceNames();
+    const space = allSpaces.find(space => !allSpacesInUseSet.has(space));
 
-    if (![name, surname, country, email].every(Boolean) || isDataAlreadyInUse || !space) {
+    const  {isValid, errorsMessages} = validateSignup({name, surname, country, email, isEmailInUse, space});
+
+    if (!isValid) {
         res.send({
-            status: "ERROR"
+            status: "ERROR",
+            message: errorsMessages
         });
         return;
     }
