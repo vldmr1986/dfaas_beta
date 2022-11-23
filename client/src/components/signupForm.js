@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {
-    Anchor,
+    Anchor, Button,
     Box, Form, FormField, Heading, Select, Spinner, Text, TextInput
 } from "grommet";
 import {fetchAvailableSpaces, fetchCountries, fetchSignUp} from "../actions";
@@ -123,11 +123,12 @@ function SignUp() {
                     Sign up for GreenLake for Data Fabric beta access
                 </Heading>
                 <Box>
-                    <Box direction={"row"}>
+                    <Box direction={"row"} width={"100%"}>
+                    <Box direction={"row"}  width={"50%"}>
                         <Box width={LABEL_WIDTH} justify={"center"} >
                                 <Text>Name*</Text>
                         </Box>
-                        <Box width={"100%"}>
+                        <Box>
                             <FormField
                                 htmlFor="text-input-id-name"
                                 name="name"
@@ -140,11 +141,11 @@ function SignUp() {
                             </FormField>
                         </Box>
                     </Box>
-                    <Box direction={"row"}>
-                        <Box width={LABEL_WIDTH} justify={"center"} >
+                    <Box direction={"row"}  width={"50%"}>
+                        <Box justify={"center"} width={LABEL_WIDTH}>
                             <Text>Surname*</Text>
                         </Box>
-                        <Box width={"100%"}>
+                        <Box>
                             <FormField
                                 htmlFor="text-input-id-name"
                                 name="surname"
@@ -156,11 +157,12 @@ function SignUp() {
                             </FormField>
                         </Box>
                     </Box>
+                        </Box>
                     <Box direction={"row"}>
                         <Box width={LABEL_WIDTH} justify={"center"} >
                             <Text>Email*</Text>
                         </Box>
-                        <Box width={"100%"}>
+                        <Box >
                             <FormField
                                 htmlFor="text-input-id-email"
                                 name="name"
@@ -176,7 +178,7 @@ function SignUp() {
                         <Box width={LABEL_WIDTH} justify={"center"} >
                             <Text>Country*</Text>
                         </Box>
-                        <Box width={"100%"}>
+                        <Box width={"400px"}>
                             <FormField htmlFor="select-size" name={"country"} className={"width-50"}>
                                 <Select
                                     id="select-country"
@@ -199,13 +201,17 @@ function SignUp() {
                     : null
                 }
                 <Box margin={{vertical: "medium"}}  align={"center"} direction={"row"}>
-                    <Anchor onClick={()=>setShowAgreement(true)} label={"Please click here to read the end user license agreement and register"}/>
+                    <Button
+                        primary
+                        label={"Read licence and Register "}
+                        onClick={()=>setShowAgreement(true)}
+                    />
+                    {/*<Anchor onClick={()=>setShowAgreement(true)} label={"Please click here to read the end user license agreement and register"}/>*/}
                     {/*<Text size={"large"} margin={{right: "medium"}}>End User License Agreement*</Text>*/}
                     {/*<Button label={"Read and accept"} onClick={()=>setShowAgreement(true)} secondary={true}/>*/}
                 </Box>
                 <Text>
                     Once registration is complete you will receive an email with the link to activate your HPE consumer account. <br/>After activation of the account login at
-
                     <Anchor margin={{horizontal: "xsmall"}} href={"https://client.greenlake.hpe-gl-intg.com/"} label={"https://client.greenlake.hpe-gl-intg.com/"}/>
                     to access the Beta program
                 </Text>
