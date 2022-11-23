@@ -203,7 +203,7 @@ function SignUp() {
                 <Box margin={{vertical: "medium"}}  align={"center"} direction={"row"}>
                     <Button
                         primary
-                        label={"Read licence and Register "}
+                        label={"Read license and Register "}
                         onClick={()=>setShowAgreement(true)}
                     />
                     {/*<Anchor onClick={()=>setShowAgreement(true)} label={"Please click here to read the end user license agreement and register"}/>*/}
