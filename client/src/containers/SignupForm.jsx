@@ -1,8 +1,31 @@
 import React from "react";
-import { Box, Button, Text } from "grommet";
-import { DfSelectField, DfTextField } from "../components";
+import { Box, Button, Image, Text } from "grommet";
+import { DfModal, DfSelectField, DfTextField } from "../components";
+import { useState } from "react";
 
 const SignupForm = () => {
+  const [open, setOpen] = useState(false);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setOpen(true);
+  };
+
+  const actionButtons = [
+    {
+      label: "Cancel",
+      onClick: () => {
+        setOpen(false);
+      },
+    },
+    {
+      primary: true,
+      label: "Accept and Register",
+      onClick: () => {
+        setOpen(false);
+      },
+    },
+  ];
+
   return (
     <Box
       pad="medium"
@@ -21,7 +44,7 @@ const SignupForm = () => {
         </Text>
 
         <form
-          onSubmit={() => {}}
+          onSubmit={handleSubmit}
           data-testid="signupForm"
           className="DfForm full"
           style={{
@@ -77,6 +100,19 @@ const SignupForm = () => {
           </Box>
         </form>
       </Box>
+      <DfModal
+        id="termsAndConditionsModal"
+        title="Terms & Conditions"
+        open={open}
+        setOpen={setOpen}
+        onClose={() => {}}
+        actionButtons={actionButtons}
+        width="large"
+      >
+        <Box>
+          <Image fit="cover" src="/images/terms-and-conditions.png" />
+        </Box>
+      </DfModal>
     </Box>
   );
 };

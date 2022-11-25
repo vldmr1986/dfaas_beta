@@ -1,16 +1,17 @@
-import React, { useState } from "react";
-import { Box, Heading } from "grommet";
-import Logo from "./logo.svg";
+import React from // useState
+"react";
+// import { Box, Heading } from "grommet";
+// import Logo from "./logo.svg";
 import "./App.sass";
-import SignUp from "./components/signupForm";
+// import SignUp from "./components/signupForm";
 import { SignupPage } from "./pages/Signup";
 
 function App() {
-  const [userData, setUserData] = useState({
-    isAuth: false,
-    customerid: null,
-    customername: "",
-  });
+  // const [userData, setUserData] = useState({
+  //   isAuth: false,
+  //   customerid: null,
+  //   customername: "",
+  // });
   return (
     // <Box>
     //   <Box margin={{ left: "large", top: "medium" }} width={"medium"}>
