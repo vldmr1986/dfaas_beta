@@ -58,7 +58,7 @@ const SignupForm = () => {
             name="name"
             label="Name"
             required
-            error="Name is required"
+            // error="Name is required"
           />
           <DfTextField
             id="signUpSurname"
@@ -66,7 +66,7 @@ const SignupForm = () => {
             label="Surname"
             required
             type="Surname"
-            error="Surname is required"
+            // error="Surname is required"
           />
           <DfTextField
             id="signUpEmail"
