@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Button, Image, Text } from "grommet";
 import { DfModal, DfSelectField, DfTextField } from "../components";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SignupForm = () => {
   const [open, setOpen] = useState(false);
@@ -10,11 +11,14 @@ const SignupForm = () => {
     setOpen(true);
   };
 
+  const navigate = useNavigate();
+
   const actionButtons = [
     {
       label: "Cancel",
       onClick: () => {
         setOpen(false);
+        navigate("/error");
       },
     },
     {
@@ -22,6 +26,7 @@ const SignupForm = () => {
       label: "Accept and Register",
       onClick: () => {
         setOpen(false);
+        navigate("/success");
       },
     },
   ];
