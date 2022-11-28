@@ -13,17 +13,16 @@ const SignupWarningPage = () => {
     //   </Text>
     // </Box>
     <Box flex align="center" margin={{ top: "xlarge" }}>
-      <Box height="xsmall" width="160px" margin={{ bottom: "large" }}>
-        <Image fit="cover" src="/images/warning.png" />
+      <Box height="small" width="250px" margin={{ bottom: "large" }}>
+        <Image fit="cover" src="/images/error.png" />
       </Box>
       <Box
-        width="xlarge"
+        width="large"
         pad={{ horizontal: "large" }}
         margin={{ top: "large" }}
       >
         <Text size="xxlarge" color="text-strong" textAlign="center">
-          Sorry, at this point of time we cannot activate the beta access for
-          the Greenlake for Data Fabric.
+          Oops! Something went wrong and we are working hard to get you in.
         </Text>
       </Box>
       <Box
@@ -32,8 +31,7 @@ const SignupWarningPage = () => {
         margin={{ top: "small" }}
       >
         <Text size="large" color="text-strong" textAlign="center">
-          Your request has been noted, and we will get in touch with you via the
-          email you provided to authorize your access.
+          We will email you when ready.
         </Text>
       </Box>
     </Box>
