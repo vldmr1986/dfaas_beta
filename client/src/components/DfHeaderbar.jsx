@@ -15,10 +15,11 @@ const DfHeaderbar = () => {
           gap={isSmallSize(size) ? "none" : "small"}
           direction={isSmallSize(size) ? "column" : "row"}
         >
+
           <Hpe color="plain" />
           <Box direction="row" gap="small">
             <Text color="text-strong">
-              <strong>HPE</strong>&nbsp; Ezmeral Runtime Enterprise
+              <strong>HPE</strong>&nbsp; Data Fabric
             </Text>
           </Box>
         </Box>

@@ -1,0 +1,1 @@
+export const LINK_ENV= "https://client.greenlake.hpe-gl-intg.com";

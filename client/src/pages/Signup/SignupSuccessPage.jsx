@@ -1,6 +1,8 @@
 import { Box, Image, Text, Anchor } from "grommet";
+import {LINK_ENV} from "../../constants";
 
 const SignupSuccessPage = () => {
+  const email = localStorage.getItem("email");
   return (
     <Box flex align="center" margin={{ top: "medium" }}>
       <Box height="xsmall" width="xsmall">
@@ -19,7 +21,7 @@ const SignupSuccessPage = () => {
               Activate Account
             </Text>
             <Text size="large" color="text-strong">
-              You’re almost there! We have sent an email to smith.john@hpe.com
+              You’re almost there! We have sent an email to {email}
             </Text>
             <Text size="large" color="text-strong">
               <Anchor href="#" color="text-strong">
@@ -34,8 +36,8 @@ const SignupSuccessPage = () => {
             </Text>
             <Text size="large" color="text-weak">
               Go to link{" "}
-              <Anchor color="text-weak" href="#">
-                http://client.greenlake.hpe.gl-intg.com/
+              <Anchor color="text-weak" href={LINK_ENV} target={"_blank"}>
+                {LINK_ENV}
               </Anchor>
               to access the Beta program.
             </Text>

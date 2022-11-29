@@ -23,7 +23,7 @@ const SignupForm = () => {
   const {
     handleSubmit, getValues,
     control,
-    formState: { errors, ...others },
+    formState: { errors },
   } = useForm({
     defaultValues: {
       [FORM_INPUT_NAMES.NAME]: "",
@@ -34,7 +34,7 @@ const SignupForm = () => {
   });
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
-
+  // navigate("/success")
 
   useEffect(()=>{
     if (isSuccess) navigate("/success");
@@ -44,11 +44,10 @@ const SignupForm = () => {
     // if (data) {
     //   setOpen(true);
     // }
-    console.log(data)
+
     signupUser(data);
 
   };
-  console.log("1111", others)
 
   const actionButtons = [
     {
@@ -65,7 +64,7 @@ const SignupForm = () => {
       disabled: isLoading,
       onClick: () => {
         const data = getValues();
-        console.log("22222", data);
+        localStorage.setItem("email", data.email);
 
         signupUser(data);
         setOpen(false);
@@ -106,7 +105,7 @@ const SignupForm = () => {
           <DfTextField
             id={FORM_INPUT_NAMES.NAME}
             name={FORM_INPUT_NAMES.NAME}
-            label="Name"
+            label="First Name"
             control={control}
             required
             error={get(errors, FORM_INPUT_NAMES.NAME)}
@@ -114,7 +113,7 @@ const SignupForm = () => {
           <DfTextField
             id={FORM_INPUT_NAMES.SURNAME}
             name={FORM_INPUT_NAMES.SURNAME}
-            label="Surname"
+            label="Last Name"
             control={control}
             required
             error={get(errors, FORM_INPUT_NAMES.SURNAME)}
@@ -148,7 +147,7 @@ const SignupForm = () => {
               // type="submit"
               primary disabled={isLoading}
               reverse
-              label="Read the HPE terms & conditions to Registerss"
+              label="Read the HPE Terms & Conditions to Register"
             />
             {isLoading ? <Text weight={"bolder"} margin={{left: "medium"}}>Processing...</Text> : null}
           </Box>
