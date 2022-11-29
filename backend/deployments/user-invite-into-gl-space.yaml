@@ -5,8 +5,6 @@
 #-----------------------------------------------------------------#
 #  Jobs fulfilled:                                                #
 #   1) User Creation                                              #
-#   2) Space Creation                                             #
-#   3) Space specific role assignment to user                     #
 #                                                                 #
 #-----------------------------------------------------------------#
 
@@ -19,8 +17,7 @@
   - name: Choosing the environment
     set_fact: 
       iam_endpoint: "{% if env_var == 'intg' %}{{iam_endpoint_intg}}{% else %}{{iam_endpoint_prod}}{% endif %}"
-      role_id_HPE_operator: "{% if env_var == 'intg' %}{{role_id_HPE_operator_intg}}{% else %}{{role_id_HPE_operator_prod}}{% endif %}"
-      role_id_DF_cluster_admin: "{% if env_var == 'intg' %}{{role_id_DF_cluster_admin_intg}}{% else %}{{role_id_DF_cluster_admin_prod}}{% endif %}"
+      dfaas_endpoint: "{% if env_var == 'intg' %}{{dfaas_endpoint_intg}}{% else %}{{dfaas_endpoint_prod}}{% endif %}"
 
 #------------------------------------------------------------------#
 #                       Login Token                                #
@@ -67,7 +64,7 @@
 
   - name: Create lab user in GLC [{{ user.email }}]
     uri:
-      url: https://{{ iam_endpoint }}/scim/v2/Users
+      url: https://{{ dfaas_endpoint }}/invite_user
       method: POST
       validate_certs: no
       return_content: yes
@@ -79,141 +76,19 @@
         Content-type: application/scim+json
       body: |
         {
-          "userName": "{{ user_email_Id }}",
+          "mailId": "{{ user_email_Id }}",
           "countryCode": "{{ country_code }}",
-          "name": {
-            "familyName": "{{ last_name }}",
-            "givenName": "{{ first_name }}"
-          }
+          "firstName": "{{ last_name }}",
+          "lastName": "{{ first_name }}",
+          "tenantID": "{{ tenant_id }}"
         }
       body_format: json
       status_code: [200, 201]
     ignore_errors: no
     register: user_data
     until: user_data.status not in glc_rest_api_default_retry_status_codes
-    retries: "{{ glc_rest_api_max_retry_count }}"
+    #retries: "{{ glc_rest_api_max_retry_count }}"
     delay: "{{ glc_rest_api_max_retry_delay }}"
 
-  - name: Set user id details if lab user is newly created
-    set_fact: 
-      glc_user_id={{user_data.json.id}}
-
-  - debug:
-      msg: "{% if glc_user_id!=0%} User Created successfully with User_Email: {{ user_email_Id }} and User_Id : {{ glc_user_id }} {% else %} Skipping user Creation {% endif %}"
 
 
-#------------------------------------------------------------------#
-#                        Get space by name                         #
-#------------------------------------------------------------------#
-
-
-  - name: Get space by name
-    ansible.builtin.uri:
-      url: https://{{ iam_endpoint }}/v1alpha2/spaces?name={{ space1_name | urlencode }}
-      method: GET
-      validate_certs: no
-      return_content: yes
-      force_basic_auth: true
-      timeout: 60
-      headers:
-        Authorization: "{{ access_token }}"
-        Accept: application/json
-        Content-type: application/json
-      body_format: json
-    ignore_errors: no
-    register: space_data
-    until: space_data.status not in glc_rest_api_default_retry_status_codes
-    retries: "{{ glc_rest_api_max_retry_count }}"
-    delay: "{{ glc_rest_api_max_retry_delay }}"
-
-  - debug:
-      var: space_data
-    when: debug_mode is defined and debug_mode == "on"
-
-  - set_fact:
-      space_id: "{{ space_data.json.members[0].id }}"
-    when: space_data.json.members != []
-
-  - debug:
-      msg: "Space info [Name: {{ space1_name }}, ID: {{ space_id }}]"
-    when: debug_mode is defined and debug_mode == "on" and space_id is defined
-
-  - set_fact:
-      space_resources: "{{ space_data.json.members[0].resources }}"
-    when: space_data.json.members != []
-
-  - name: Return length of space members
-    set_fact: space_length="{{space_data.json.members | length}}"
-
-
-#------------------------------------------------------------------#
-#                Role Assignment : HPE Operator                    #
-#------------------------------------------------------------------# 
-
-
-  - name: Create assignment in space 1
-    ansible.builtin.uri:
-      url: https://{{ iam_endpoint }}/v1alpha2/assignments
-      method: POST
-      validate_certs: no
-      return_content: yes
-      force_basic_auth: true
-      timeout: 60
-      headers:
-        Authorization: "{{ access_token }}"
-        Accept: application/json
-        Content-type: application/json
-      body: |
-        {
-          "subjects": [
-            "users/{{ glc_user_id }}"
-          ],
-          "roleId": "{{ role_id_HPE_operator }}",
-          "spaceId": "{{space_id}}"
-        }
-      body_format: json
-      status_code: [200, 201]
-    ignore_errors: no
-    register: result
-    until: result.status not in glc_rest_api_default_retry_status_codes
-    retries: "{{ glc_rest_api_max_retry_count }}"
-    delay: "{{ glc_rest_api_max_retry_delay }}"
-
-  - debug:
-      msg: "'Data Fabric HPE Operator' role successfully assigned to {{ user_email_Id }} for {{ space1_name }}"
-
-
-#------------------------------------------------------------------#
-#                Role Assignment : DF Cluster Admin                #
-#------------------------------------------------------------------#
-
-  - name: Create assignment in space 2
-    ansible.builtin.uri:
-      url: https://{{ iam_endpoint }}/v1alpha2/assignments
-      method: POST
-      validate_certs: no
-      return_content: yes
-      force_basic_auth: true
-      timeout: 60
-      headers:
-        Authorization: "{{ access_token }}"
-        Accept: application/json
-        Content-type: application/json
-      body: |
-        {
-          "subjects": [
-            "users/{{ glc_user_id }}"
-          ],
-          "roleId": "{{ role_id_DF_cluster_admin }}",
-          "spaceId": "{{ space_id }}"
-        }
-      body_format: json
-      status_code: [200, 201]
-    ignore_errors: no
-    register: result
-    until: result.status not in glc_rest_api_default_retry_status_codes
-    retries: "{{ glc_rest_api_max_retry_count }}"
-    delay: "{{ glc_rest_api_max_retry_delay }}"
-   
-  - debug:
-      msg: "'Data Fabric Cluster Admin' role successfully assigned to {{ user_email_Id }} for {{ space1_name }}"
