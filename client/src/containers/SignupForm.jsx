@@ -1,14 +1,41 @@
 import React from "react";
-import { Box, Button, Image, Text } from "grommet";
+import { Box, Button, Text } from "grommet";
 import { DfModal, DfSelectField, DfTextField } from "../components";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+
+import licenseContent from "../euula.pdf";
+import { countries } from "../utils";
+import get from "lodash/get";
+
+const FORM_INPUT_NAMES = {
+  NAME: "name",
+  SURNAME: "surname",
+  EMAIL: "email",
+  COUNTRY: "country",
+};
 
 const SignupForm = () => {
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      [FORM_INPUT_NAMES.NAME]: "",
+      [FORM_INPUT_NAMES.SURNAME]: "",
+      [FORM_INPUT_NAMES.EMAIL]: "",
+      [FORM_INPUT_NAMES.COUNTRY]: "IN",
+    },
+  });
   const [open, setOpen] = useState(false);
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setOpen(true);
+
+  const onSubmit = (data) => {
+    if (data) {
+      setOpen(true);
+    }
+    // console.log(data)
   };
 
   const navigate = useNavigate();
@@ -45,13 +72,14 @@ const SignupForm = () => {
           Sign Up
         </Text>
         <Text size="small" color="text-strong">
-          Sign Up for GreenLake for Data Fabric beta access
+          Sign up for HPE GreenLake for Data Fabric beta access
         </Text>
 
         <form
-          onSubmit={handleSubmit}
+          id="signupForm"
+          onSubmit={handleSubmit(onSubmit)}
           data-testid="signupForm"
-          className="DfForm full"
+          noValidate={false}
           style={{
             display: "flex",
             flexDirection: "column",
@@ -59,37 +87,38 @@ const SignupForm = () => {
           }}
         >
           <DfTextField
-            id="signUpName"
-            name="name"
+            id={FORM_INPUT_NAMES.NAME}
+            name={FORM_INPUT_NAMES.NAME}
             label="Name"
+            control={control}
             required
-            // error="Name is required"
+            error={get(errors, FORM_INPUT_NAMES.NAME)}
           />
           <DfTextField
-            id="signUpSurname"
-            name="Surname"
+            id={FORM_INPUT_NAMES.SURNAME}
+            name={FORM_INPUT_NAMES.SURNAME}
             label="Surname"
+            control={control}
             required
-            type="Surname"
-            // error="Surname is required"
+            error={get(errors, FORM_INPUT_NAMES.SURNAME)}
           />
           <DfTextField
-            id="signUpEmail"
-            name="Email"
+            id={FORM_INPUT_NAMES.EMAIL}
+            name={FORM_INPUT_NAMES.EMAIL}
             label="Email"
-            required
             type="Email"
-            error="Email is required"
+            control={control}
+            required
+            error={get(errors, FORM_INPUT_NAMES.EMAIL)}
           />
           <DfSelectField
-            id="signUpCountry"
-            name="Country"
-            options={["India", "USA", "Ukraine"]}
-            value={"India"}
+            id={FORM_INPUT_NAMES.COUNTRY}
+            name={FORM_INPUT_NAMES.COUNTRY}
+            options={countries}
             label="Country"
+            control={control}
             required
-            error="Country is required"
-            onChange={({ option }) => {}}
+            error={get(errors, FORM_INPUT_NAMES.COUNTRY)}
           />
           <Box
             direction="row"
@@ -100,7 +129,7 @@ const SignupForm = () => {
               type="submit"
               primary
               reverse
-              label="Read the HPE terms & conditions to Register"
+              label="Read the HPE terms & conditions to Registerss"
             />
           </Box>
         </form>
@@ -115,7 +144,7 @@ const SignupForm = () => {
         width="large"
       >
         <Box>
-          <Image fit="cover" src="/images/terms-and-conditions.png" />
+          <object style={{ minHeight: "500px" }} data={licenseContent}></object>
         </Box>
       </DfModal>
     </Box>

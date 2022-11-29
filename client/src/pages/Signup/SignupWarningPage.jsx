@@ -2,19 +2,9 @@ import { Box, Text, Image } from "grommet";
 
 const SignupWarningPage = () => {
   return (
-    // <Box>
-    //   <Box height="small" width="small">
-    //     <Image fit="cover" src="/images/warning.png" />
-    //   </Box>
-    //   <Heading level={3}>Oops! Looks like the Beta got oversubscribed.</Heading>
-    //   <Text>
-    //     However stay tuned, we are working hard to get you in. We will email you
-    //     when ready.
-    //   </Text>
-    // </Box>
     <Box flex align="center" margin={{ top: "xlarge" }}>
-      <Box height="small" width="250px" margin={{ bottom: "large" }}>
-        <Image fit="cover" src="/images/error.png" />
+      <Box height="small" width="190px" margin={{ bottom: "large" }}>
+        <Image fit="cover" src="/images/something-went-wrong-light.png" />
       </Box>
       <Box
         width="large"

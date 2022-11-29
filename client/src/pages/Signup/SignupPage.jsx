@@ -52,7 +52,7 @@ const SignupPage = () => {
                 margin={{ top: "none", bottom: "large" }}
                 level={1}
               >
-                Welcome to <br /> GreenLake for Data Fabric
+                Welcome to <br /> HPE Ezmeral Data Fabric
               </Heading>
               <Text size="xlarge" color="text-strong">
                 AI / ML, Data Analytics, App Modernization, DevOps, and more.
