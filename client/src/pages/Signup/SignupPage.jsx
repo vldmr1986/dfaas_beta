@@ -55,7 +55,8 @@ const SignupPage = () => {
                 Welcome to <br /> HPE Ezmeral Data Fabric
               </Heading>
               <Text size="xlarge" color="text-strong">
-                AI / ML, Data Analytics, App Modernization, DevOps, and more.
+                Access HPE Ezmeral Data Fabric as a fully managed service. Sign
+                up to get 300GB for use as files, objects and streams
               </Text>
 
               <Box
