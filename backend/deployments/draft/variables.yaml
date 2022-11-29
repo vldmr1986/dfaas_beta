@@ -17,12 +17,9 @@
 
 #environment var : Choose between prod or intg
 env_var: intg
-
+ansible_python_interpreter: /usr/bin/python3
 iam_endpoint_intg: iam.intg.hpedevops.net
 iam_endpoint_prod: iam.us1.greenlake-hpe.com
-dfaas_endpoint_intg: dfaas.intg.hpedevops.net/dfaas/v1alpha
-dfaas_endpoint_prod: dfaas.us1.greenlake-hpe.com/dfaas/v1alpha
-
 
 #space creation
 space1_name: "{{ lookup('env', 'space_name') }}"
@@ -38,7 +35,6 @@ user_email_Id: "{{ lookup('env', 'user_email_Id') }}"
 country_code: "{{ lookup('env', 'country_code') }}"
 last_name: "{{ lookup('env', 'last_name') }}"
 first_name: "{{ lookup('env', 'first_name') }}"
-tenant_id: "{{ lookup('env', 'tenantID') }}"
 
 #role_creation
 role_id_HPE_operator_intg: 5118d52e-c5d2-4309-8cf2-4cdb8935c0a9
