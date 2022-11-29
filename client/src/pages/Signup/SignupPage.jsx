@@ -71,7 +71,7 @@ const SignupPage = () => {
                 <Box flex direction="row" gap="small">
                   <Deploy />
                   <Text color="text-strong" size="medium">
-                    After registration you will from HPE.com receive an email with a link to
+                    After registration you will receive an email from HPE.com  with a link to
                     activate your HPE consumer account.
                   </Text>
                 </Box>
