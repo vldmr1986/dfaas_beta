@@ -5,6 +5,7 @@ import { DfFooterbar, DfMetatag } from "../../components";
 import { SignupForm } from "../../containers";
 import { isSmallSize } from "../../utils";
 import ezbgimage from "./ezbgimg.jpg";
+import {LINK_ENV} from "../../constants";
 
 const SignupPage = () => {
   const size = useContext(ResponsiveContext);
@@ -19,7 +20,7 @@ const SignupPage = () => {
       }}
     >
       <DfMetatag
-        title="HPE Ezmeral Runtime Enterprise | Signup Page"
+        title="HPE Data Fabric"
         description="Signup page to access HPE Ezmeral Runtime Enterprise and HPE Ezmeral ML Ops"
       />
       <Box
@@ -70,7 +71,7 @@ const SignupPage = () => {
                 <Box flex direction="row" gap="small">
                   <Deploy />
                   <Text color="text-strong" size="medium">
-                    After registration you may receive an email with the link to
+                    After registration you will from HPE.com receive an email with a link to
                     activate your HPE consumer account.
                   </Text>
                 </Box>
@@ -84,13 +85,14 @@ const SignupPage = () => {
                   <Text color="text-strong" size="medium">
                     After activation of your account, login at &nbsp;
                     <Anchor
-                      href="#"
-                      label="http://client.greenlake.hpe.gl-intg.com/"
+                      href={LINK_ENV}
+                      label={LINK_ENV}
+                      target={"_blank"}
                       style={{
                         whiteSpace: "nowrap",
                       }}
-                    />{" "}
-                    to access the Beta program.
+                    />
+                    <Text margin={{left: "xsmall"}}>to access the Beta program.</Text>
                   </Text>
                 </Box>
               </Box>
