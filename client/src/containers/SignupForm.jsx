@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Box, Button, Text } from "grommet";
 import { DfModal, DfSelectField, DfTextField } from "../components";
 import { useState } from "react";
@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import licenseContent from "../euula.pdf";
 import { countries } from "../utils";
 import get from "lodash/get";
+import {useUserMutations} from "../hooks";
 
 const FORM_INPUT_NAMES = {
   NAME: "name",
@@ -17,10 +18,12 @@ const FORM_INPUT_NAMES = {
 };
 
 const SignupForm = () => {
+  const  {registerUser} = useUserMutations();
+  const {mutate: signupUser, isSuccess, isLoading} = registerUser;
   const {
-    handleSubmit,
+    handleSubmit, getValues,
     control,
-    formState: { errors },
+    formState: { errors, ...others },
   } = useForm({
     defaultValues: {
       [FORM_INPUT_NAMES.NAME]: "",
@@ -30,30 +33,44 @@ const SignupForm = () => {
     },
   });
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+
+
+  useEffect(()=>{
+    if (isSuccess) navigate("/success");
+  }, [isSuccess])
 
   const onSubmit = (data) => {
-    if (data) {
-      setOpen(true);
-    }
-    // console.log(data)
-  };
+    // if (data) {
+    //   setOpen(true);
+    // }
+    console.log(data)
+    signupUser(data);
 
-  const navigate = useNavigate();
+  };
+  console.log("1111", others)
 
   const actionButtons = [
     {
       label: "Cancel",
       onClick: () => {
         setOpen(false);
-        navigate("/error");
+        // navigate("/error");
       },
     },
     {
       primary: true,
+      type: "submit",
       label: "Accept and Register",
+      disabled: isLoading,
       onClick: () => {
+        const data = getValues();
+        console.log("22222", data);
+
+        signupUser(data);
         setOpen(false);
-        navigate("/success");
+        // setOpen(false);
+
       },
     },
   ];
@@ -123,14 +140,17 @@ const SignupForm = () => {
           <Box
             direction="row"
             margin={{ top: "medium" }}
+            align={"center"}
             background={{ color: "transparent", dark: false }}
           >
             <Button
-              type="submit"
-              primary
+                onClick={()=> setOpen(true)}
+              // type="submit"
+              primary disabled={isLoading}
               reverse
               label="Read the HPE terms & conditions to Registerss"
             />
+            {isLoading ? <Text weight={"bolder"} margin={{left: "medium"}}>Processing...</Text> : null}
           </Box>
         </form>
       </Box>

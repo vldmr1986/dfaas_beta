@@ -3,7 +3,7 @@ import { api } from "../utils";
 
 const useUserMutations = () => {
   const registerUser = useMutation(
-    ({ formData }) =>
+    (formData ) =>
       api({
         method: "POST",
         url: "/api/signup",
