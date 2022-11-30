@@ -258,6 +258,7 @@ const countries = [
   { value: "ZM", label: "Zambia" },
   { value: "ZW", label: "Zimbabwe" },
   { value: "AX", label: "Aringland Islands" },
+  { value: "OTHERS", label: "Others" },
 ];
 
 export { isSmallSize, uniqueKey, api, countries };

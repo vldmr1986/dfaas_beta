@@ -1,5 +1,52 @@
 import { Box, Image, Text, Anchor } from "grommet";
-import {LINK_ENV} from "../../constants";
+import styled from "styled-components";
+import { LINK_ENV } from "../../constants";
+
+const RoadmapContainer = styled(Box)`
+  width: 590px;
+  .roadmap {
+    position: relative;
+    width: 10px;
+  }
+  .roadmap::before {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    background: #000;
+    position: absolute;
+    top: 8px;
+  }
+  .roadmap::after {
+    content: "";
+    display: block;
+    width: 2px;
+    height: calc(100% - 20px);
+    background: red;
+    top: 23px;
+    position: absolute;
+    left: 4px;
+  }
+  .roadmap.success::before {
+    background: #17eba0;
+  }
+  .roadmap.success::after {
+    background: #000;
+  }
+  .roadmap.active::before {
+    background: #307299;
+  }
+  .roadmap.active::after {
+    background: #ccc;
+  }
+  .roadmap.disabled::before {
+    background: #cccccc;
+  }
+  .roadmap.disabled::after {
+    display: none;
+  }
+`;
 
 const SignupSuccessPage = () => {
   const email = localStorage.getItem("email");
@@ -8,42 +55,46 @@ const SignupSuccessPage = () => {
       <Box height="xsmall" width="xsmall">
         <Image fit="cover" src="/images/signup-success.png" />
       </Box>
-      <Box flex direction="row" gap="small">
-        <Box width="12px">
-          <Image fit="contain" src="/images/roadmap.png" />
+      <RoadmapContainer margin={{ top: "large" }}>
+        <Box flex direction="row" gap="small">
+          <Box className="roadmap success"></Box>
+          <Box pad={{ bottom: "large" }}>
+            <Text size="xxlarge" color="text-strong">
+              Your registration is complete.
+            </Text>
+          </Box>
         </Box>
-        <Box margin={{ top: "large" }} width="575px">
-          <Text size="xxlarge" color="text-strong">
-            Your registration is completed.
-          </Text>
-          <Box margin={{ top: "large" }}>
+        <Box flex direction="row" gap="small">
+          <Box className="roadmap active"></Box>
+          <Box pad={{ bottom: "large" }}>
             <Text size="medium" color="text-strong">
               Activate Account
             </Text>
             <Text size="large" color="text-strong">
               You’re almost there! We have sent an email to {email}
             </Text>
-            <Text size="large" color="text-strong">
-              <Anchor href="#" color="text-strong">
-                Resend mail
-              </Anchor>{" "}
-              if you did not recieve an email.
-            </Text>
           </Box>
-          <Box margin={{ top: "large" }}>
+        </Box>
+        <Box flex direction="row" gap="small">
+          <Box className="roadmap disabled"></Box>
+          <Box pad={{ bottom: "large" }}>
             <Text size="medium" color="text-weak">
               Access GreenLake for Data Fabric Dashboard.
             </Text>
             <Text size="large" color="text-weak">
-              Go to link{" "}
-              <Anchor color="text-weak" href={LINK_ENV} target={"_blank"}>
-                {LINK_ENV}
-              </Anchor>
-              to access the Beta program.
+              Click
+              <Anchor
+                margin={{ left: "xsmall", right: "xsmall" }}
+                color="text-weak"
+                href={LINK_ENV}
+                label="here"
+                target={"_blank"}
+              />
+              to access your Data Fabric.
             </Text>
           </Box>
         </Box>
-      </Box>
+      </RoadmapContainer>
     </Box>
   );
 };

@@ -2,10 +2,10 @@ import { Box, Heading, Text, ResponsiveContext, Anchor } from "grommet";
 import { Hpe, Deploy, ContactInfo } from "grommet-icons";
 import { useContext } from "react";
 import { DfFooterbar, DfMetatag } from "../../components";
-import { SignupForm } from "../../containers";
+import { SignupForm } from "../../containers/Singup";
 import { isSmallSize } from "../../utils";
 import ezbgimage from "./ezbgimg.jpg";
-import {LINK_ENV} from "../../constants";
+import { LINK_ENV } from "../../constants";
 
 const SignupPage = () => {
   const size = useContext(ResponsiveContext);
@@ -53,26 +53,26 @@ const SignupPage = () => {
                 margin={{ top: "none", bottom: "large" }}
                 level={1}
               >
-                Welcome to <br /> HPE Ezmeral Data Fabric
+                Welcome to <br /> HPE GreenLake for Data Fabric Beta
               </Heading>
               <Text size="xlarge" color="text-strong">
                 Access HPE Ezmeral Data Fabric as a fully managed service. Sign
-                up to get 300GB for use as files, objects and streams
+                up to get 300GB for use as files, objects and streams.
               </Text>
 
               <Box
                 round="small"
                 width={isSmallSize(size) ? "100%" : "574px"}
                 flex={false}
-                background={{ color: "#ffffff" }}
+                background={{ color: "#EFEFEF" }}
                 margin={{ top: "medium" }}
                 pad="medium"
               >
                 <Box flex direction="row" gap="small">
                   <Deploy />
                   <Text color="text-strong" size="medium">
-                    After registration you will receive an email from HPE.com  with a link to
-                    activate your HPE consumer account.
+                    After registration you will receive an email from HPE.com
+                    with a link to activate your HPE consumer account.
                   </Text>
                 </Box>
                 <Box
@@ -83,8 +83,9 @@ const SignupPage = () => {
                 >
                   <ContactInfo />
                   <Text color="text-strong" size="medium">
-                    After activation of your account, login at &nbsp;
+                    After activation of your account, login at
                     <Anchor
+                      margin={{ left: "xsmall", right: "xsmall" }}
                       href={LINK_ENV}
                       label={LINK_ENV}
                       target={"_blank"}
@@ -92,7 +93,7 @@ const SignupPage = () => {
                         whiteSpace: "nowrap",
                       }}
                     />
-                    <Text margin={{left: "xsmall"}}>to access the Beta program.</Text>
+                    <Text>to access your Data Fabric.</Text>
                   </Text>
                 </Box>
               </Box>
