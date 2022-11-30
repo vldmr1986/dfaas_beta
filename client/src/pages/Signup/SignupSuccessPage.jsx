@@ -30,9 +30,12 @@ const RoadmapContainer = styled(Box)`
   }
   .roadmap.success::before {
     background: #17eba0;
+    top: 20px;
   }
   .roadmap.success::after {
     background: #000;
+    top: 34px;
+    height: calc(100% - 31px);
   }
   .roadmap.active::before {
     background: #307299;
