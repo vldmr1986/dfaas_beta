@@ -1,6 +1,7 @@
 export * from "./DfButtonSet";
 export * from "./DfFooterbar";
 export * from "./DfHeaderbar";
+export * from "./DfLoading";
 export * from "./DfMetatag";
 export * from "./DfTextField";
 export * from "./DfModal";
