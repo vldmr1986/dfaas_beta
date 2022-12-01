@@ -21,7 +21,7 @@ const DfFooterbar = () => {
         gap="xsmall"
         justify={isSmallSize(size) ? "between" : undefined}
       >
-        <Button label="Contact Us" href="#" />
+        <Button label="Contact Us" href="mailto:support@hpe.com" target="_blank" />
       </Box>
     </Footer>
   );
