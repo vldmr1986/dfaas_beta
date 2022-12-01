@@ -6,20 +6,28 @@
 require('dotenv').config();
 var app = require('../app');
 var debug = require('debug')('dfaas:server');
-var http = require('http');
+// var http = require('http');
+var https = require('https');
+const fs = require('fs');
+
+const options = {
+  key: fs.readFileSync(__dirname + '/../certificates/key.pem', "utf8" ),
+  cert: fs.readFileSync(__dirname + '/../certificates/cert.pem' , "utf8")
+};
+
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort( 443 || 'process.env.PORT');
 app.set('port', port);
 
 /**
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+var server = https.createServer(options, app);
 
 /**
  * Listen on provided port, on all network interfaces.
