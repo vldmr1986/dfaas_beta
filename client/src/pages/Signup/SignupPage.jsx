@@ -83,11 +83,11 @@ const SignupPage = () => {
                 >
                   <ContactInfo />
                   <Text color="text-strong" size="medium">
-                    After activation of your account, login at
+                    After activation of your account, click
                     <Anchor
                       margin={{ left: "xsmall", right: "xsmall" }}
                       href={LINK_ENV}
-                      label={LINK_ENV}
+                      label={"here"}
                       target={"_blank"}
                       style={{
                         whiteSpace: "nowrap",
