@@ -26,7 +26,7 @@ const defaultValues = {
   [FORM_INPUT_NAMES.NAME]: "",
   [FORM_INPUT_NAMES.SURNAME]: "",
   [FORM_INPUT_NAMES.EMAIL]: "",
-  [FORM_INPUT_NAMES.COUNTRY]: "IN",
+  [FORM_INPUT_NAMES.COUNTRY]: "US",
 };
 
 const SignupForm = () => {
