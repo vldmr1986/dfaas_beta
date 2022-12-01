@@ -5,6 +5,7 @@
   "scripts": {
     "start": "./node_modules/.bin/pm2 start ./bin/www >> api.log 2>&1",
     "dev": "./node_modules/.bin/nodemon ./bin/www >> api.log 2>&1",
+    "test": "./bin/www",
     "create_db": "node db/create_db.js"
   },
   "dependencies": {
