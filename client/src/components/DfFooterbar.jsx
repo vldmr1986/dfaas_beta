@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Box, Footer, ResponsiveContext, Text } from "grommet";
+import { Box, Button, Footer, ResponsiveContext, Text } from "grommet";
 import { isSmallSize } from "../utils";
 
 const DfFooterbar = () => {
@@ -15,6 +15,13 @@ const DfFooterbar = () => {
         <Text size="small">
           © 2022 Hewlett Packard Enterprise Development LP
         </Text>
+      </Box>
+      <Box
+        direction="row"
+        gap="xsmall"
+        justify={isSmallSize(size) ? "between" : undefined}
+      >
+        <Button label="Contact Us" href="#" />
       </Box>
     </Footer>
   );
