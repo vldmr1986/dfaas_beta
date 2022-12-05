@@ -16,7 +16,7 @@
 #-----------------------------------------------------------------#
 
 #environment var : Choose between prod or intg
-env_var: intg
+env_var: prod
 
 iam_endpoint_intg: iam.intg.hpedevops.net
 iam_endpoint_prod: iam.us1.greenlake-hpe.com

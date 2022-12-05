@@ -2,7 +2,7 @@ const express = require('express');
 const db = require("../db");
 const {ansibleExecute} = require("../deployments/run_ansible");
 // const {getSpaceNames} = require("../db/data");
-const {validateSignup} = require("../utils/validationUtils");
+const {validateSignup, parseAnsibleResponse} = require("../utils/validationUtils");
 const router = express.Router();
 
 router.post('/', async(req, res) => {
@@ -35,25 +35,30 @@ router.post('/', async(req, res) => {
             last_name: surname,
             user_email_Id: email,
             country_code: country,
+            tenantId: process.env.tenantId,
+            issuer: process.env.issuer,
+            api_client_id: process.env.api_client_id,
+            api_client_secret: process.env.api_client_secret,
             // space_name: space,
         });
         const executionTime = new Date();
         console.log("Ansible Execution: ",executionTime.toUTCString(),
             ansibleResult);
-        if (typeof(ansibleResult) === "string" &&  ansibleResult.indexOf("fatal: [localhost]: FAILED!") !== -1) {
+        const {isError, errorMessage} = parseAnsibleResponse(ansibleResult);
             res.send({
-                status: "ERROR",
-                message: "This user is already invited for Data Fabric beta access."
+                status: isError ? "ERROR" : "OK",
+                message: errorMessage,
             });
             return;
-        }
+
     } catch (err){
         console.error(err);
+        const {errorMessage} = parseAnsibleResponse(err?.stdout);
         res.send({
             status: "ERROR",
             // parse error
             // message: err?.stdout ?  err?.stdout : "Error"
-            message: "This user is already invited for Data Fabric beta access."
+            message: errorMessage || "This user is already invited for Data Fabric beta access."
         });
         return;
     }
