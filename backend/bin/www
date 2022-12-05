@@ -3,12 +3,16 @@
 /**
  * Module dependencies.
  */
-require('dotenv').config();
+// require('dotenv').config();
+
 var app = require('../app');
 var debug = require('debug')('dfaas:server');
 // var http = require('http');
 var https = require('https');
 const fs = require('fs');
+const {isntallEnvVaraibles} = require("../utils/installEnvVariables");
+
+isntallEnvVaraibles();
 
 const options = {
     key: fs.readFileSync(__dirname + '/../certificates/key.key', 'utf8'),

@@ -1,5 +1,8 @@
-require('dotenv').config();
+// require('dotenv').config();
 const  mysql      = require('mysql');
+const {isntallEnvVaraibles} = require("../utils/installEnvVariables");
+
+isntallEnvVaraibles();
 const {DB_NAME="db", TABLE_NAME = "deployments", DB_USERNAME, DB_PASSWORD, DB_HOST} = process.env;
 
 const createDbQuery = `CREATE DATABASE ${DB_NAME};`;

@@ -1,6 +1,7 @@
 node_modules
 client/build
 backend/certificates/*
+backend/.env*
 .idea
-.env
+
 *.log
