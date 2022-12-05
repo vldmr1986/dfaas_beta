@@ -4,7 +4,8 @@ const validators = [
     {field: "email", validator: ({email})=> email && email.trim().length ? null : "Invalid email"},
     // {field: "space", validator: ({space})=> space ? null : "No available spacename"},
     {field: "country", validator: ({country})=> country ? null : "Invalid country"},
-    {field: "isEmailInUse", validator: ({isEmailInUse})=> !isEmailInUse ? null : "This user is already invited for Data Fabric beta access."},
+    {field: "isEmailInUse", validator: ({isEmailInUse})=> !isEmailInUse ? null : null },
+            // "This user is already invited for Data Fabric beta access."
 ];
 
 const validateSignup = (signUpData) => {
@@ -18,6 +19,24 @@ const validateSignup = (signUpData) => {
     }
 }
 
+const errorText =  "fatal: [localhost]: FAILED!"
+const duplicatedUserText  =  "Duplicate entry: User with login already exists";
+const duplicatedTextToSend = "This user is already invited for Data Fabric beta access."
+const apiErrorToSend = "API error";
+
+function parseAnsibleResponse(ansibleResponse){
+    const isError = typeof(ansibleResponse) === "string" &&  ansibleResponse.indexOf(errorText) !== -1;
+    return {
+        isError,
+        errorMessage: isError
+            ? ansibleResponse.indexOf(duplicatedUserText) !== -1
+                ? duplicatedTextToSend
+                : apiErrorToSend
+            : ""
+    }
+}
+
 module.exports = {
+    parseAnsibleResponse,
     validateSignup
 }
