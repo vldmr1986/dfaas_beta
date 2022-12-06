@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start": "./node_modules/.bin/pm2 start ./bin/www >> api.log 2>&1",
-    "prod": "NODE_ENV=PRODUCTION ./node_modules/.bin/pm2 start ./bin/www -i 3 >> api.log 2>&1",
-    "intg": "NODE_ENV=INTEGRATION ./node_modules/.bin/pm2 start ./bin/www -i 3  >> api.log 2>&1",
+    "prod": "NODE_ENV=PRODUCTION ./node_modules/.bin/pm2 start ./bin/www >> api.log 2>&1",
+    "intg": "NODE_ENV=INTEGRATION ./node_modules/.bin/pm2 start ./bin/www >> api.log 2>&1",
     "dev": "NODE_ENV=PRODUCTION ./node_modules/.bin/nodemon ./bin/www >> api.log 2>&1",
     "test": "./bin/www",
     "create_db": "node db/create_db.js"
