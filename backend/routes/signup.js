@@ -54,11 +54,11 @@ router.post('/', async(req, res) => {
     } catch (err){
         console.error(err);
         const {errorMessage} = parseAnsibleResponse(err?.stdout);
-        res.send({
+        res.status(409).send({
             status: "ERROR",
             // parse error
             // message: err?.stdout ?  err?.stdout : "Error"
-            message: errorMessage || "This user is already invited for Data Fabric beta access."
+            message: errorMessage
         });
         return;
     }

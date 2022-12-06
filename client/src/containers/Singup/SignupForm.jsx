@@ -14,6 +14,7 @@ import licenseContent from "../../euula.pdf";
 import { countries, dfRegEx } from "../../utils";
 import get from "lodash/get";
 import { useUserMutations } from "../../hooks";
+import {BACKEND_STATUSES} from "../../constants";
 
 const FORM_INPUT_NAMES = {
   NAME: "name",
@@ -31,7 +32,7 @@ const defaultValues = {
 
 const SignupForm = () => {
   const { registerUser } = useUserMutations();
-  const { mutate: signupUser, isSuccess, isLoading } = registerUser;
+  const { mutate: signupUser, isSuccess, isLoading, data: registrationResponse } = registerUser;
   const {
     handleSubmit,
     getValues,
@@ -45,11 +46,13 @@ const SignupForm = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isSuccess) {
+    if (isSuccess && registrationResponse.status !== BACKEND_STATUSES.ERROR) {
       setOpen(false);
       navigate("/success");
+    } else {
+      setOpen(false);
     }
-  }, [isSuccess, navigate]);
+  }, [isSuccess]);
 
   const onSubmit = () => {
     if (Object.entries(errors).length === 0) {
@@ -165,6 +168,12 @@ const SignupForm = () => {
                   validateInput(value, FORM_INPUT_NAMES.COUNTRY),
               }}
             />
+            {registrationResponse?.status === "ERROR" && registrationResponse?.message
+                ? <Text margin={{top: "small"}} color={"red"} weight={"bolder"}>Error: {registrationResponse?.message}</Text>
+                : null
+            }
+
+
             <Box
               direction="row"
               margin={{ top: "medium" }}
