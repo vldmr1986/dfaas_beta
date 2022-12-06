@@ -3,3 +3,8 @@ export const EXTERNAL_LINKS = {
     integrationEnv: "https://client.greenlake.hpe.com",
     mailTo: "mailto:hpe-df@hpe.com"
 }
+
+export const BACKEND_STATUSES = {
+    OK: "OK",
+    ERROR: "ERROR"
+}

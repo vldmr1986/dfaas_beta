@@ -20,9 +20,9 @@ const validateSignup = (signUpData) => {
 }
 
 const errorText =  "fatal: [localhost]: FAILED!"
-const duplicatedUserText  =  "Duplicate entry: User with login already exists";
+const duplicatedUserText  =  "The request resulted in a duplicate entry";
 const duplicatedTextToSend = "This user is already invited for Data Fabric beta access."
-const apiErrorToSend = "API error";
+const apiErrorToSend = "Internal error, please try again after sometime?";
 
 function parseAnsibleResponse(ansibleResponse){
     const isError = typeof(ansibleResponse) === "string" &&  ansibleResponse.indexOf(errorText) !== -1;
@@ -37,6 +37,7 @@ function parseAnsibleResponse(ansibleResponse){
 }
 
 module.exports = {
+    duplicatedUserText,
     parseAnsibleResponse,
     validateSignup
 }
