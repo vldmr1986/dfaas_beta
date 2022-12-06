@@ -5,7 +5,7 @@ import { DfFooterbar, DfMetatag } from "../../components";
 import { SignupForm } from "../../containers/Singup";
 import { isSmallSize } from "../../utils";
 import ezbgimage from "./ezbgimg.jpg";
-import { LINK_ENV } from "../../constants";
+import {EXTERNAL_LINKS} from "../../constants";
 
 const SignupPage = () => {
   const size = useContext(ResponsiveContext);
@@ -86,7 +86,7 @@ const SignupPage = () => {
                     After activation of your account, click
                     <Anchor
                       margin={{ left: "xsmall", right: "xsmall" }}
-                      href={LINK_ENV}
+                      href={EXTERNAL_LINKS.prodEnv}
                       label={"here"}
                       target={"_blank"}
                       style={{

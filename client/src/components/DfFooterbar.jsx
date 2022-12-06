@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Box, Button, Footer, ResponsiveContext, Text } from "grommet";
 import { isSmallSize } from "../utils";
+import {EXTERNAL_LINKS} from "../constants";
 
 const DfFooterbar = () => {
   const size = useContext(ResponsiveContext);
@@ -21,7 +22,7 @@ const DfFooterbar = () => {
         gap="xsmall"
         justify={isSmallSize(size) ? "between" : undefined}
       >
-        <Button label="Contact Us" href="mailto:support@hpe.com" target="_blank" />
+        <Button label="Contact Us" href={EXTERNAL_LINKS.mailTo} target="_blank" />
       </Box>
     </Footer>
   );

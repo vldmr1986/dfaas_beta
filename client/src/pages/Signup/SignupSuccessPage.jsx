@@ -1,6 +1,6 @@
 import { Box, Image, Text, Anchor } from "grommet";
 import styled from "styled-components";
-import { LINK_ENV } from "../../constants";
+import {EXTERNAL_LINKS} from "../../constants";
 
 const RoadmapContainer = styled(Box)`
   width: 590px;
@@ -89,7 +89,7 @@ const SignupSuccessPage = () => {
               <Anchor
                 margin={{ left: "xsmall", right: "xsmall" }}
                 color="text-weak"
-                href={LINK_ENV}
+                href={EXTERNAL_LINKS.prodEnv}
                 label="here"
                 target={"_blank"}
               />
