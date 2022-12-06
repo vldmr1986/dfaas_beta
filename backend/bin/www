@@ -24,7 +24,7 @@ const options = {
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort( 443 || 'process.env.PORT');
+var port = normalizePort(process.env.PORT);
 app.set('port', port);
 
 /**
