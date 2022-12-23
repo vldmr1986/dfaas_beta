@@ -14,7 +14,7 @@ import licenseContent from "../../euula.pdf";
 import { countries, dfRegEx } from "../../utils";
 import get from "lodash/get";
 import { useUserMutations } from "../../hooks";
-import {BACKEND_STATUSES} from "../../constants";
+import {ALLOWED_EMAIL_DOMAINS, BACKEND_STATUSES} from "../../constants";
 
 const FORM_INPUT_NAMES = {
   NAME: "name",
@@ -63,8 +63,12 @@ const SignupForm = () => {
   const validateInput = (value, field) => {
     switch (field) {
       case FORM_INPUT_NAMES.EMAIL:
-        if (value && !dfRegEx.email_address.test(value)) {
+        const emailMatch = dfRegEx.email_address.exec(value);
+        if (!emailMatch) {
           return "Enter a valid email address.";
+        }
+        if (!ALLOWED_EMAIL_DOMAINS.includes(emailMatch?.groups?.domain)) {
+          return "Enter your corporate email address.";
         }
         return true;
       case FORM_INPUT_NAMES.COUNTRY:
