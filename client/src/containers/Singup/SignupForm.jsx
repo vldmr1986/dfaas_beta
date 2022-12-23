@@ -67,7 +67,7 @@ const SignupForm = () => {
         if (!emailMatch) {
           return "Enter a valid email address.";
         }
-        if (!ALLOWED_EMAIL_DOMAINS.includes(emailMatch?.groups?.domain)) {
+        if (!ALLOWED_EMAIL_DOMAINS.hasOwnProperty(emailMatch?.groups?.domain)) {
           return "Enter your corporate email address.";
         }
         return true;
