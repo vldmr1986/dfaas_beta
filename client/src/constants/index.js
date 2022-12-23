@@ -10,4 +10,6 @@ export const BACKEND_STATUSES = {
 }
 
 // TODO add complete whitelist of email domains
-export const ALLOWED_EMAIL_DOMAINS = ["hpe.com"];
+export const ALLOWED_EMAIL_DOMAINS = {
+    "hpe.com": null
+};
