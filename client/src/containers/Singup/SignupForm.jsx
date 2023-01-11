@@ -14,7 +14,7 @@ import licenseContent from "../../euula.pdf";
 import { countries, dfRegEx } from "../../utils";
 import get from "lodash/get";
 import { useUserMutations } from "../../hooks";
-import {ALLOWED_EMAIL_DOMAINS, BACKEND_STATUSES} from "../../constants";
+import {BACKEND_STATUSES, DISALLOWED_EMAIL_DOMAINS} from "../../constants";
 
 const FORM_INPUT_NAMES = {
   NAME: "name",
@@ -67,7 +67,7 @@ const SignupForm = () => {
         if (!emailMatch) {
           return "Enter a valid email address.";
         }
-        if (!ALLOWED_EMAIL_DOMAINS.hasOwnProperty(emailMatch.groups.domain)) {
+        if (DISALLOWED_EMAIL_DOMAINS.hasOwnProperty(emailMatch.groups.domain)) {
           return "Enter your corporate email address.";
         }
         return true;
