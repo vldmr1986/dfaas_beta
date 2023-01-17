@@ -16,7 +16,7 @@ const queryClient = new QueryClient({
     },
 });
 
-ReactGA.initialize('G-YTC2BR4296');
+ReactGA.initialize('UA-254359085-1');
 
 function App() {
     return (<QueryClientProvider client={queryClient}>
