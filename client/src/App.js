@@ -16,7 +16,9 @@ const queryClient = new QueryClient({
     },
 });
 
-ReactGA.initialize('UA-254359085-1');
+if (process.env.NODE_ENV === "production") {
+    ReactGA.initialize('UA-254359085-1');
+}
 
 function App() {
     return (<QueryClientProvider client={queryClient}>
