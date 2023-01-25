@@ -14,7 +14,7 @@ const DfFooterbar = () => {
     >
       <Box align={isSmallSize(size) ? "center" : undefined}>
         <Text size="small">
-          © 2022 Hewlett Packard Enterprise Development LP
+          © 2023 Hewlett Packard Enterprise Development LP
         </Text>
       </Box>
       <Box
