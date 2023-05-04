@@ -30,15 +30,6 @@ const SignupPage = () => {
         responsive={false}
         fill
       >
-        <Box direction="row" align="center" gap="small">
-          <Hpe size={isSmallSize(size) ? "medium" : "large"} color="brand" />
-          <Box direction="row" gap="xxsmall">
-            <Text color="text-strong" weight="bold">
-              Hewlett
-            </Text>
-            <Text color="text-strong">Packard Enterprise</Text>
-          </Box>
-        </Box>
         <Box
           direction={isSmallSize(size) ? "column" : "row"}
           gap="large"
@@ -111,7 +102,6 @@ const SignupPage = () => {
             <SignupForm />
           </Box>
         </Box>
-        <DfFooterbar />
       </Box>
     </Box>
   );
