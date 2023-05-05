@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en" xml:lang="en">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
@@ -24,10 +24,20 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+    <!--
+      Next 3 lines are for HFWS (Header Footer Webservice).
+      See https://digitalguidelines.its.hpecorp.net/docs/hpe.com-common-hfws-quick-js-guide-1.0.4.pdf
+    -->
+    <script src="https://h50007.www5.hpe.com/hfws-static/js/framework/jquery/v-3-6-0/jquery.js"></script>
+    <script src="https://h50007.www5.hpe.com/hfws/us/en/hpe/latest.r/root?contentType=js&switchToCHF=true"></script>
+    <meta content="ie" name="ww" />
+    
     <title>DFAAS</title>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="header" class="header">
+      <!-- HFWS will insert its header here -->
+    </div>
     <div id="root"></div>
     <!--
       This HTML file is a template.
@@ -39,5 +49,8 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <div id="footer" class="footer">
+      <!-- HFWS will insert its footer here -->
+    </div>
   </body>
 </html>
