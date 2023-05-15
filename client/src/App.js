@@ -6,7 +6,6 @@ import {SignupPage, SignupSuccessPage, SignupWarningPage} from "./pages";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import {QueryClient, QueryClientProvider} from "react-query";
 import {ReactQueryDevtools} from "react-query/devtools";
-import {WithAnalytics} from "./withAnalytics";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -24,23 +23,27 @@ function App() {
     return (<QueryClientProvider client={queryClient}>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<WithAnalytics>
+                    <Route path="/" element={
                         <SignupPage/>
-                    </WithAnalytics>}/>
+                    }/>
                     {/* <Route path="/" element={<SignUp />} /> */}
                     <Route
                         path="/success"
-                        element={<WithAnalytics>
-                            <DfHeaderbar/>
-                            <SignupSuccessPage/>
-                        </WithAnalytics>}
+                        element={
+                            <>
+                                <DfHeaderbar/>
+                                <SignupSuccessPage/>
+                            </>
+                        }
                     />
                     <Route
                         path="/error"
-                        element={<WithAnalytics>
-                            <DfHeaderbar/>
-                            <SignupWarningPage/>
-                        </WithAnalytics>}
+                        element={
+                            <>
+                                <DfHeaderbar/>
+                                <SignupWarningPage/>
+                            </>
+                        }
                     />
                 </Routes>
             </BrowserRouter>
