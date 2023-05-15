@@ -133,7 +133,8 @@ const SignupForm = () => {
             <DfTextField
               id={FORM_INPUT_NAMES.NAME}
               name={FORM_INPUT_NAMES.NAME}
-              label="First Name"
+              label="First name"
+              aria-label="First name"
               control={control}
               required
               error={get(errors, FORM_INPUT_NAMES.NAME)}
@@ -141,7 +142,8 @@ const SignupForm = () => {
             <DfTextField
               id={FORM_INPUT_NAMES.SURNAME}
               name={FORM_INPUT_NAMES.SURNAME}
-              label="Last Name"
+              label="Last name"
+              aria-label="Last name"
               control={control}
               required
               error={get(errors, FORM_INPUT_NAMES.SURNAME)}
@@ -150,6 +152,7 @@ const SignupForm = () => {
               id={FORM_INPUT_NAMES.EMAIL}
               name={FORM_INPUT_NAMES.EMAIL}
               label="Email"
+              aria-label="Email"
               control={control}
               rules={{
                 validate: (value) =>
@@ -163,6 +166,7 @@ const SignupForm = () => {
               name={FORM_INPUT_NAMES.COUNTRY}
               options={countries}
               label="Country"
+              aria-label="Country"
               control={control}
               required
               onChange={() => trigger(FORM_INPUT_NAMES.COUNTRY)}
