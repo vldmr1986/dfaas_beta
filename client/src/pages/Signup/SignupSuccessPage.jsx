@@ -82,7 +82,7 @@ const SignupSuccessPage = () => {
           <Box className="roadmap disabled"></Box>
           <Box pad={{ bottom: "large" }}>
             <Text size="medium" color="text-weak">
-              Access GreenLake for Data Fabric Dashboard.
+              Access Ezmeral Data Fabric dashboard.
             </Text>
             <Text size="large" color="text-weak">
               Click
