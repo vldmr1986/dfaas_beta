@@ -25,7 +25,6 @@ async function excelAppendRow(data){
                 values: [[name, surname, email, country, domain, new Date()]]
             },
             insertDataOption: "INSERT_ROWS",
-            responseValueRenderOption: "UNFORMATTED_VALUE",
             valueInputOption: "RAW",
         });
         console.log("response", response1.data);
