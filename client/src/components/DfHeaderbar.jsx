@@ -18,7 +18,7 @@ const DfHeaderbar = () => {
           <Hpe color="plain" />
           <Box direction="row" gap="small">
             <Text color="text-strong">
-              <strong>HPE</strong>&nbsp; GreenLake for Data Fabric
+              <strong>HPE</strong>&nbsp; Ezmeral Data Fabric
             </Text>
           </Box>
         </Box>

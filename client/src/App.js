@@ -1,5 +1,4 @@
 import React from "react";
-import ReactGA from 'react-ga';
 import {DfHeaderbar} from "./components";
 // import SignUp from "./components/signupForm";
 import {SignupPage, SignupSuccessPage, SignupWarningPage} from "./pages";
@@ -14,10 +13,6 @@ const queryClient = new QueryClient({
         },
     },
 });
-
-if (process.env.NODE_ENV === "production") {
-    ReactGA.initialize('UA-254359085-1');
-}
 
 function App() {
     return (<QueryClientProvider client={queryClient}>

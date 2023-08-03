@@ -94,8 +94,8 @@ function SignUp() {
             </Box>
             <Text size={"large"}>
                 Please check your email and activate your HPE consumer account with the link provided in the email.<br/>
-                After activation of the account you can access the Ezmeral DFaaS by clicking
-                <Anchor margin={{left: "xsmall"}} href="https://client.greenlake.hpe-gl-intg.com" label="EzDFaaS" />
+                Once your account is activated, you can access your fabric by clicking
+                <Anchor margin={{left: "xsmall"}} href="https://client.greenlake.hpe-gl-intg.com" label="HPE Ezmeral Data Fabric" />
             </Text>
         </Box>
     }
@@ -103,7 +103,7 @@ function SignUp() {
     if (spaces !== null && !spaces?.length) {
         return <Box>
             <Box align={"center"} justify={"center"}>
-                <Text>Sorry, at this point of time we cannot activate the beta access for the DFaaS. We have noted down your request and some one from HPE Ezmeral will connect to you on the email you have provided to activate your access.</Text>
+                <Text>We are unable to activate early access for HPE Ezmeral Data Fabric. We have noted your request and someone from HPE Ezmeral will connect with you via the email you provided.</Text>
             </Box>
         </Box>
     }
@@ -120,7 +120,7 @@ function SignUp() {
                 onSubmit={onSubmit}
             >
                 <Heading level={4} >
-                    Sign up for GreenLake for Data Fabric beta access
+                    Sign up for Ezmeral Data Fabric early access
                 </Heading>
                 <Box>
                     <Box direction={"row"} width={"100%"}>
@@ -211,9 +211,9 @@ function SignUp() {
                     {/*<Button label={"Read and accept"} onClick={()=>setShowAgreement(true)} secondary={true}/>*/}
                 </Box>
                 <Text>
-                    Once registration is complete you will receive an email with the link to activate your HPE consumer account. <br/>After activation of the account login at
+                    Once registration is complete, you will receive an email with the link to activate your HPE consumer account. <br/>Once your account is activated, login at
                     <Anchor margin={{horizontal: "xsmall"}} href={"https://client.greenlake.hpe-gl-intg.com/"} label={"https://client.greenlake.hpe-gl-intg.com/"}/>
-                    to access the Beta program
+                    for early access.
                 </Text>
                 {/*<Button*/}
                 {/*    label={"Register"}*/}

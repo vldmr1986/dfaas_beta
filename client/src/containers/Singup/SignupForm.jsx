@@ -116,7 +116,7 @@ const SignupForm = () => {
             Sign Up
           </Text>
           <Text size="small" color="text-strong">
-            Sign up for HPE GreenLake for Data Fabric beta.
+            Sign up for HPE Ezmeral Data Fabric early access
           </Text>
 
           <form

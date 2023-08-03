@@ -44,7 +44,7 @@ const SignupPage = () => {
                 margin={{ top: "none", bottom: "large" }}
                 level={1}
               >
-                Welcome to <br /> HPE GreenLake for Data Fabric Beta
+                Welcome to <br /> HPE Ezmeral Data Fabric early access
               </Heading>
               <Text size="xlarge" color="text-strong">
                 Access HPE Ezmeral Data Fabric as a fully managed service. Sign
@@ -74,7 +74,7 @@ const SignupPage = () => {
                 >
                   <ContactInfo />
                   <Text color="text-strong" size="medium">
-                    After activation of your account, click
+                    Once your account is activated, click
                     <Anchor
                       margin={{ left: "xsmall", right: "xsmall" }}
                       href={EXTERNAL_LINKS.prodEnv}
