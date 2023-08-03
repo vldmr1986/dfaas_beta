@@ -3,7 +3,7 @@ const path = require("path");
 const process = require("process");
 const {promises: fs} = require("fs");
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly', 'https://www.googleapis.com/auth/spreadsheets'];
-const credentials = path.join(__dirname, 'secrets.json');
+const credentials = path.join(__dirname, 'secrets', 'secrets.json');
 const { GOOGLE_SPREADSHEET_ID } = process.env;
 
 

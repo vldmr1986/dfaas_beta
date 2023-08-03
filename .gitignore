@@ -2,8 +2,8 @@ node_modules
 client/build
 backend/certificates/*
 backend/.env*
-backend/services_internal/google/credentials.json
-backend/services_internal/google/secrets.json
+backend/services_internal/google/secrets/credentials.json
+backend/services_internal/google/secrets/secrets.json
 .idea
 
 *.log
