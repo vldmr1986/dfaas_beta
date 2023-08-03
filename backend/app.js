@@ -21,5 +21,9 @@ app.use('/api/signup', signupRouter);
 app.use('/api/spaces', spacesRouter);
 app.use('/api/countries', countriesRouter);
 
+app.get('*', function(req, res){
+    res.redirect('/');
+});
+
 
 module.exports = app;

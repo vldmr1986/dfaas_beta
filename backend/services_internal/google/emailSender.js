@@ -17,15 +17,16 @@ function sendEmailToSubscribers(data){
         },
     });
 
-
     transporter.sendMail({
         from: GMAIL,
         to: EMAIL_SUBSCRIBERS,
         subject: "New registration hpe-df ✔", // Subject line
         html: letterRenderer({name, surname, country, email}),
-    }).then(info => {
-        console.log({info});
-    }).catch(console.error);
+    }).catch((error)=>{
+        console.error({
+            data, error
+        })
+    });
 }
 
 function letterRenderer({email, country, name, surname}){

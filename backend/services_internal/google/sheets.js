@@ -4,12 +4,12 @@ const process = require("process");
 const {promises: fs} = require("fs");
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly', 'https://www.googleapis.com/auth/spreadsheets'];
 const credentials = path.join(__dirname, 'secrets.json');
-const {GOOGLE_SPREADSHEET_ID} = process.env;
+const { GOOGLE_SPREADSHEET_ID } = process.env;
 
 
 async function excelAppendRow(data){
     const {name, surname, country, email} = data;
-    const [_login, domain] = email.split("@")
+    const [_login, domain] = email.split("@");
     try {
         const auth = await google.auth.getClient({
             scopes: SCOPES,
@@ -25,6 +25,7 @@ async function excelAppendRow(data){
                 values: [[name, surname, email, country, domain, new Date()]]
             },
             insertDataOption: "INSERT_ROWS",
+            responseValueRenderOption: "UNFORMATTED_VALUE",
             valueInputOption: "RAW",
         });
         console.log("response", response1.data);
