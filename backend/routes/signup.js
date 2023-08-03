@@ -3,15 +3,14 @@ const db = require("../db");
 const {ansibleExecute} = require("../deployments/run_ansible");
 // const {getSpaceNames} = require("../db/data");
 const {validateSignup, parseAnsibleResponse} = require("../utils/validationUtils");
+const {excelAppendRow} = require("../services_internal/google/sheets");
+const {sendEmailToSubscribers} = require("../services_internal/google/emailSender");
 const router = express.Router();
 
 router.post('/', async(req, res) => {
     const {name="", surname="", country = "", email=""} = req.body;
     const emailsInDB  =  await db.pool.query("SELECT email from deployments");
     const isEmailInUse = !!emailsInDB.find(({ email: _email})=> _email === email)?.email;
-    // const allSpacesInUseSet = new Set(spacesAndEmailsInDB.map(({space})=> space));
-    // const allSpaces = await getSpaceNames();
-    // const space = allSpaces.find(space => !allSpacesInUseSet.has(space));
 
     const  {isValid, errorsMessages} = validateSignup({name, surname, country, email, isEmailInUse});
 
@@ -23,46 +22,12 @@ router.post('/', async(req, res) => {
         return;
     }
 
-    try {
-        console.log("Trying to register user ", {first_name: name,
-            last_name: surname,
-            user_email_Id: email,
-            country_code: country,
-            // space_name: space
-        });
-        const ansibleResult = await ansibleExecute({
+        console.log("Trying to register user ", {
             first_name: name,
             last_name: surname,
             user_email_Id: email,
             country_code: country,
-            tenantId: process.env.tenantId,
-            issuer: process.env.issuer,
-            api_client_id: process.env.api_client_id,
-            api_client_secret: process.env.api_client_secret,
-            // space_name: space,
         });
-        const executionTime = new Date();
-        console.log("Ansible Execution: ",executionTime.toUTCString(),
-            ansibleResult);
-        const {isError, errorMessage} = parseAnsibleResponse(ansibleResult);
-            res.send({
-                status: isError ? "ERROR" : "OK",
-                message: errorMessage,
-            });
-            return;
-
-    } catch (err){
-        console.error(err);
-        const {errorMessage} = parseAnsibleResponse(err?.stdout);
-        res.status(409).send({
-            status: "ERROR",
-            // parse error
-            // message: err?.stdout ?  err?.stdout : "Error"
-            message: errorMessage
-        });
-        return;
-    }
-
 
     try {
         const values = [name, surname, country, email];
@@ -73,11 +38,19 @@ router.post('/', async(req, res) => {
         }
 
         res.send(responseToUser);
+
+        excelAppendRow({
+            name, surname, country, email
+        });
+        sendEmailToSubscribers({
+            name, surname, country, email
+        });
+
     } catch (err) {
+        console.log("error", err);
         res.send({
             status: "ERROR"
         });
-        return;
     }
 });
 

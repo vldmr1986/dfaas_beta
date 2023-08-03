@@ -51,43 +51,43 @@ const SignupPage = () => {
                 up to get 300GB for use as files, objects and streams.
               </Text>
 
-              <Box
-                round="small"
-                width={isSmallSize(size) ? "100%" : "574px"}
-                flex={false}
-                background={{ color: "#EFEFEF" }}
-                margin={{ top: "medium" }}
-                pad="medium"
-              >
-                <Box flex direction="row" gap="small">
-                  <Deploy />
-                  <Text color="text-strong" size="medium">
-                    After registration you will receive an email from HPE.com
-                    with a link to activate your HPE consumer account.
-                  </Text>
-                </Box>
-                <Box
-                  flex
-                  direction="row"
-                  gap="small"
-                  margin={{ top: "medium" }}
-                >
-                  <ContactInfo />
-                  <Text color="text-strong" size="medium">
-                    Once your account is activated, click
-                    <Anchor
-                      margin={{ left: "xsmall", right: "xsmall" }}
-                      href={EXTERNAL_LINKS.prodEnv}
-                      label={"here"}
-                      target={"_blank"}
-                      style={{
-                        whiteSpace: "nowrap",
-                      }}
-                    />
-                    <Text>to access your Data Fabric.</Text>
-                  </Text>
-                </Box>
-              </Box>
+              {/*<Box*/}
+              {/*  round="small"*/}
+              {/*  width={isSmallSize(size) ? "100%" : "574px"}*/}
+              {/*  flex={false}*/}
+              {/*  background={{ color: "#EFEFEF" }}*/}
+              {/*  margin={{ top: "medium" }}*/}
+              {/*  pad="medium"*/}
+              {/*>*/}
+              {/*  <Box flex direction="row" gap="small">*/}
+              {/*    <Deploy />*/}
+              {/*    <Text color="text-strong" size="medium">*/}
+              {/*      After registration you will receive an email from HPE.com*/}
+              {/*      with a link to activate your HPE consumer account.*/}
+              {/*    </Text>*/}
+              {/*  </Box>*/}
+              {/*  <Box*/}
+              {/*    flex*/}
+              {/*    direction="row"*/}
+              {/*    gap="small"*/}
+              {/*    margin={{ top: "medium" }}*/}
+              {/*  >*/}
+              {/*    <ContactInfo />*/}
+              {/*    <Text color="text-strong" size="medium">*/}
+              {/*      Once your account is activated, click*/}
+              {/*      <Anchor*/}
+              {/*        margin={{ left: "xsmall", right: "xsmall" }}*/}
+              {/*        href={EXTERNAL_LINKS.prodEnv}*/}
+              {/*        label={"here"}*/}
+              {/*        target={"_blank"}*/}
+              {/*        style={{*/}
+              {/*          whiteSpace: "nowrap",*/}
+              {/*        }}*/}
+              {/*      />*/}
+              {/*      <Text>to access your Data Fabric.</Text>*/}
+              {/*    </Text>*/}
+              {/*  </Box>*/}
+              {/*</Box>*/}
             </Box>
           ) : (
             <></>

@@ -71,10 +71,10 @@ const SignupSuccessPage = () => {
           <Box className="roadmap active"></Box>
           <Box pad={{ bottom: "large" }}>
             <Text size="medium" color="text-strong">
-              Activate Account
+              Activating account
             </Text>
             <Text size="large" color="text-strong">
-              You’re almost there! We have sent an email to {email}
+              {/*You’re almost there! We have sent an email to {email}*/}
             </Text>
           </Box>
         </Box>
@@ -82,19 +82,21 @@ const SignupSuccessPage = () => {
           <Box className="roadmap disabled"></Box>
           <Box pad={{ bottom: "large" }}>
             <Text size="medium" color="text-weak">
-              Access Ezmeral Data Fabric dashboard.
+              Thank you for your interest in Ezmeral Data Fabric Early Access Program.
+              Our registrations are full at the moment and we will be in touch shortly with more details.
+              {/*Access Ezmeral Data Fabric dashboard.*/}
             </Text>
-            <Text size="large" color="text-weak">
-              Click
-              <Anchor
-                margin={{ left: "xsmall", right: "xsmall" }}
-                color="text-weak"
-                href={EXTERNAL_LINKS.prodEnv}
-                label="here"
-                target={"_blank"}
-              />
-              to access your Data Fabric.
-            </Text>
+            {/*<Text size="large" color="text-weak">*/}
+            {/*  Click*/}
+            {/*  <Anchor*/}
+            {/*    margin={{ left: "xsmall", right: "xsmall" }}*/}
+            {/*    color="text-weak"*/}
+            {/*    href={EXTERNAL_LINKS.prodEnv}*/}
+            {/*    label="here"*/}
+            {/*    target={"_blank"}*/}
+            {/*  />*/}
+            {/*  to access your Data Fabric.*/}
+            {/*</Text>*/}
           </Box>
         </Box>
       </RoadmapContainer>
