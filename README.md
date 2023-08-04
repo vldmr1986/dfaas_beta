@@ -52,3 +52,4 @@ cd client && npm run build
 cd backend && npm run prod 
 ```
 7. Open port <PORT> (from .env.<NODE_ENV>)
+8. Copy google credentials.json to the root of the backend folder (generate: https://developers.google.com/sheets/api/quickstart/nodejs)
